@@ -55,6 +55,8 @@ expect_true(mean_range(mtcars)[1] < mean_range(mtcars)[2])
 ```
 
 ## Practice sourcing functions
+
+#custom function example
 ```{r}
 #source our food_cart functions
 #can only use r scripts
@@ -65,9 +67,24 @@ name_cart(food = "strawberry", animal = "marmot")
 
 
 
-
+#existing function practice
 ```{r}
+#source cork oak function
 
+source(here::here("src","cork_oak_growth.R"))
+
+#call function
+height_t2(3,1,5)
 ```
+
+
+
+
+
+
+
+
+
+
 
 
