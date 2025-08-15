@@ -1,0 +1,73 @@
+---
+title: "Unit test practice"
+format: html
+editor: visual
+---
+
+# unit testing with the testthat package
+
+First install necessary packages
+```{r}
+#install.packages("testthat")
+#install.packages("devtools")
+#install.packages("remotes")
+
+library(testthat)
+library(devtools)
+library(remotes)
+```
+
+write a function to practice unit test
+
+This function is going to find the mean value of each column, and then return the lowest and highest mean value calced (in that order)
+
+We would expect:
+- numeric
+- output should be a vector legnth of two
+-order should be lower and the other be higher
+
+```{r}
+mean_range <- function(df) {
+  # will return the mean values of each column
+  col_means <- apply(X = df, MARGIN = 2, FUN = mean, na.rm = TRUE)
+  #combine min and max mean values
+  col_mean_max <- max(col_means)
+  col_mean_min <- min(col_means)
+  
+  #return the min and max in that order
+  return(c(col_mean_min, col_mean_max))
+} 
+
+mean_range(df = mtcars)
+```
+
+Write some unit tests!
+```{r}
+#below is to hide the chunk output
+#| include: false
+#test the output is the length of 2
+expect_length(mean_range(df = mtcars),2)
+# nothing returned, meaning that its fine
+
+#test that first value is less than second value
+
+expect_true(mean_range(mtcars)[1] < mean_range(mtcars)[2])
+```
+
+## Practice sourcing functions
+```{r}
+#source our food_cart functions
+#can only use r scripts
+source(here::here("src","food_cart_functions.R"))
+
+name_cart(food = "strawberry", animal = "marmot")
+```
+
+
+
+
+```{r}
+
+```
+
+
